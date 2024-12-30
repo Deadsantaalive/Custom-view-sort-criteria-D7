@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function custom_sort_criteria_views_query_alter(&$view, &$query) {
+  if ($view->name == '_product_index_' && $view->current_display == 'block_1') {
+    // Make sure this sort by field created
+    if (isset($query->query['orderby']) && $query->query['orderby']) {
+      foreach ($query->query['orderby'] as $key => $order) {
+        if (strpos($order['field'], 'created') !== FALSE) {
+          // Make sure you're sorting on the created field
+          $query->query['orderby'][$key]['field'] = 'node.created';
+        }
+      }
+    }
+  }
+}

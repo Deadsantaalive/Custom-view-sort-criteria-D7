@@ -1,0 +1,5 @@
+name = Custom Sort Criteria
+description = Adds custom fields to the sorting criteria in Views.
+core = 7.x
+package = Custom
+dependencies[] = views
